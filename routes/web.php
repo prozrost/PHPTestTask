@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('first-page', 'PageController@firstPage');
+Route::get('second-page', 'PageController@secondPage');
+Route::get('third-page', 'PageController@thirdPage');
+Route::get('fourth-page', 'PageController@fourthPage');
+Route::get('fifth-page', 'PageController@fifthPage');
