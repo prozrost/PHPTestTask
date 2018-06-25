@@ -2,6 +2,11 @@
 @section('content')
 <form method="POST" action="/order" style="width: 250px;margin: 0 auto;">
     @csrf
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="form-group">
         <label for="name2">Name</label>
         <input type="text" class="form-control" id="name2" name="name" placeholder="Enter name">

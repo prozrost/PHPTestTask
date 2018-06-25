@@ -2,32 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SavePageVisitJob;
+use App\Page;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function firstPage()
+    public function get(Page $page, Request $request)
     {
-        return view('first_page');
-    }
+        $additionalFields = [
+            'ip' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+            'http_referer' => $request->server('HTTP_REFERER')
+        ];
 
-    public function secondPage()
-    {
-        return view('second_page');
-    }
+        $this->dispatchNow(new SavePageVisitJob($page, $additionalFields));
 
-    public function thirdPage()
-    {
-        return view('third_page');
-    }
-
-    public function fourthPage()
-    {
-        return view('fourth_page');
-    }
-
-    public function fifthPage()
-    {
-        return view('fifth_page');
+        return view("page_". $page->id);
     }
 }
