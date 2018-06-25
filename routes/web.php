@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('page/{page}', 'PageController@get');
+Route::get('pages', 'PageController@index');
+Route::get('pages/{page}', 'PageController@get');
 
 Route::post('order', 'OrderController@make');
+

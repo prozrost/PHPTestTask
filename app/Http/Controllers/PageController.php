@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    public function index()
+    {
+        $pages = Page::all();
+
+        return view('pages_index', ['pages' => $pages]);
+    }
+
     public function get(Page $page, Request $request)
     {
         $additionalFields = [
@@ -16,7 +23,7 @@ class PageController extends Controller
             'http_referer' => $request->server('HTTP_REFERER')
         ];
 
-        $this->dispatchNow(new SavePageVisitJob($page, $additionalFields));
+        $this->dispatch(new SavePageVisitJob($page, $additionalFields));
 
         return view("page_". $page->id);
     }

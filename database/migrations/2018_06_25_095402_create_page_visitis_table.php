@@ -18,7 +18,7 @@ class CreatePageVisitisTable extends Migration
             $table->integer('page_id');
             $table->string('user_agent');
             $table->string('ip');
-            $table->string('http_referer');
+            $table->string('http_referer')->nullable();
             $table->timestamps();
         });
     }
