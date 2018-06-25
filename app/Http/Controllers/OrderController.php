@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateOrderRequest;
 use App\Order;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function make(CreateOrderRequest $request)
+    public function make(Request $request)
     {
         $order = new Order();
 
@@ -17,6 +17,6 @@ class OrderController extends Controller
 
         $order->save();
 
-
+        return redirect()->back()->with('status', 'Order Created!');
     }
 }

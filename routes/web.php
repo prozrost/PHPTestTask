@@ -20,3 +20,5 @@ Route::get('second-page', 'PageController@secondPage');
 Route::get('third-page', 'PageController@thirdPage');
 Route::get('fourth-page', 'PageController@fourthPage');
 Route::get('fifth-page', 'PageController@fifthPage');
+
+Route::post('order', 'OrderController@make');
